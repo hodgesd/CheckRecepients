@@ -1,0 +1,27 @@
+Sub FindJ7Addressees()
+    Dim olkMsg As Outlook.MailItem, _
+        olkRecipient As Outlook.Recipient
+        Dim MsgTxt As String
+        Dim TempTxt As String
+    For Each olkMsg In Application.ActiveExplorer.Selection
+        If olkMsg.Class = olMail Then
+            For Each olkRecipient In olkMsg.Recipients
+                'MsgBox olkRecipient.Name
+                TempTxt = UCase(olkRecipient.Name)
+                If InStr(TempTxt, "J7") Then
+                     MsgTxt = MsgTxt & olkRecipient.Name & vbNewLine
+                'olkRecipient.Address
+                Else
+                
+                End If
+            Next
+            If MsgTxt = "" Then
+                MsgBox "No J7 Recipients", vbExclamation, "JS J-7 Message Addressees"
+                Else
+                
+            MsgBox MsgTxt, vbInformation, "JS J-7 Message Addressees"
+            End If
+        End If
+    Next
+    Set olkMsg = Nothing
+End Sub
